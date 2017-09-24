@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import {getParametros} from './../../config'
+import {getParametros} from './../../paths'
 
 const state = {
   parametros: []

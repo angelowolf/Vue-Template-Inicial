@@ -60,8 +60,7 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
-  import Vue from 'vue'
-  import {getProvincias, getDepartamentos, getLocalidades} from './../../config'
+  import {getProvincias, getDepartamentos, getLocalidades} from './../../paths'
 
   export default{
     name: 'selectUbicaccion',
@@ -105,7 +104,7 @@
     methods: {
       cambiaPais () {
         if (this.paisSelect && this.paisSelect !== null && this.paisSelect !== -1) {
-          Vue.http.get(`${getProvincias}?pais_id=${this.paisSelect}`).then(response => {
+          this.$http.get(`${getProvincias}?pais_id=${this.paisSelect}`).then(response => {
             this.provincias = response.data
           })
         } else {
@@ -118,7 +117,7 @@
       },
       cambiaProvincia () {
         if (this.provinciaSelect !== null && this.provinciaSelect !== -1) {
-          Vue.http.get(`${getDepartamentos}?provincia_id=${this.provinciaSelect}`).then(response => {
+          this.$http.get(`${getDepartamentos}?provincia_id=${this.provinciaSelect}`).then(response => {
             this.departamentos = response.data
           })
         } else {
@@ -130,7 +129,7 @@
       },
       cambiaDepartamento () {
         if (this.departamentoSelect !== null && this.departamentoSelect !== -1) {
-          Vue.http.get(`${getLocalidades}?departamento_id=${this.departamentoSelect}`).then(response => {
+          this.$http.get(`${getLocalidades}?departamento_id=${this.departamentoSelect}`).then(response => {
             this.localidades = response.data
           })
         } else {
@@ -143,7 +142,7 @@
         this.$emit('localidadSeleccionada', this.localidadSelect)
       },
       cargarCombos () {
-        Vue.http.get(`${getLocalidades}getCompleto?id=${this.idLocalidad}`).then(response => {
+        this.$http.get(`${getLocalidades}getCompleto?id=${this.idLocalidad}`).then(response => {
           this.provincias = response.data.provincias
           this.departamentos = response.data.departamentos
           this.localidades = response.data.localidades

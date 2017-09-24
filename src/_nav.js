@@ -1,13 +1,21 @@
 export default {
   items: [
     {
-      name: 'Test',
-      url: '/test',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'primary',
-        text: 'NEW'
-      }
+      name: 'Ejemplos',
+      url: '/ejemplos',
+      icon: 'fa fa-stack-overflow',
+      children: [
+        {
+          name: 'Test',
+          url: '/ejemplos/test',
+          icon: 'fa fa-stack-overflow'
+        },
+        {
+          name: 'Listado',
+          url: '/ejemplos/listado',
+          icon: 'fa fa-stack-overflow'
+        }
+      ]
     },
     {
       name: 'Dashboard',

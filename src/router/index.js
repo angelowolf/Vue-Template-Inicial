@@ -8,7 +8,8 @@ import Full from '@/containers/Full'
 import Dashboard from '@/views/Dashboard'
 import Charts from '@/views/Charts'
 import Widgets from '@/views/Widgets'
-import Test from '@/views/ejemplo/test'
+import Test from '@/views/ejemplo/Test'
+import Listado from '@/views/ejemplo/Listado'
 
 // Views - Components
 import Buttons from '@/views/components/Buttons'
@@ -43,11 +44,6 @@ export default new Router({
       component: Full,
       children: [
         {
-          path: 'test',
-          name: 'Test',
-          component: Test
-        },
-        {
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
@@ -61,6 +57,25 @@ export default new Router({
           path: 'widgets',
           name: 'Widgets',
           component: Widgets
+        },
+        {
+          path: 'ejemplos',
+          name: 'Ejemplos',
+          component: {
+            render (c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'test',
+              name: 'Test',
+              component: Test
+            },
+            {
+              path: 'listado',
+              name: 'Listado',
+              component: Listado
+            }
+          ]
         },
         {
           path: 'components',

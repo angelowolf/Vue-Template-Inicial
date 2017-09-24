@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animated fadeIn">
     <div class="col-md-3">
         <label style="margin-bottom: 0px;">FECHA</label>
         <p class="input-group input-group-sm" style="width: 100%;">
@@ -13,15 +13,14 @@
         </p>
     </div>   
     <div>
-    <button @click="bsc = !bsc">CLICKME</button>
-      <btn-buscar :haciendo="bsc" @click="buscar"></btn-buscar>
-      <btn-gr :haciendo="bsc"></btn-gr>
-      <btn :haciendo="bsc"></btn>
-      <btn-ed :haciendo="bsc"></btn-ed>
-      <btn-el :haciendo="bsc"></btn-el>
-      <btn-nv :haciendo="bsc" @click="modalAlta = true"></btn-nv>
+    <button @click="buscando = !buscando">CLICKME</button>
+      <btn-buscar :haciendo="buscando" @click="buscar"></btn-buscar>
+      <btn-gr :haciendo="buscando"></btn-gr>
+      <btn :haciendo="buscando"></btn>
+      <btn-ed :haciendo="buscando"></btn-ed>
+      <btn-el :haciendo="buscando"></btn-el>
+      <btn-nv :haciendo="buscando" @click="modalAlta = true"></btn-nv>
     </div>
-    <tabla :data="data" :columnas="columnas" :titulos="titulos" :acciones="acciones" @consultar="consultar" @editar="editar" @eliminar="eliminar"></tabla>
     <b-modal title="Modal title" v-model="modalAlta" @ok="modalAlta = false">
     </b-modal>
   </div>
@@ -35,40 +34,16 @@ export default {
   data () {
     return {
       modalAlta: false,
-      bsc: false,
+      buscando: false,
       fechaMin: null,
       fechaMax: null,
       opciones2: {dateFormat: 'd-m-Y', maxDate: null},
-      opciones3: {dateFormat: 'd-m-Y', minDate: null},
-      data: [],
-      columnas: [
-        'sitNombre', 'sitCodigo', 'sitEstado'
-      ],
-      titulos: [
-        'Nombre', 'Código', 'State'
-      ],
-      acciones: [
-        {name: 'consultar', label: '', icon: 'fa fa-eye', class: 'btn btn-info', idData: 'sitCodigo'},
-        {name: 'editar', label: '', icon: 'fa fa-edit', class: 'btn btn-warning', idData: 'sitCodigo'},
-        {name: 'eliminar', label: '', icon: 'fa fa-remove', class: 'btn btn-danger', idData: 'sitCodigo'}
-      ]
+      opciones3: {dateFormat: 'd-m-Y', minDate: null}
     }
   },
   methods: {
     buscar () {
-      this.$http.get('http://192.168.30.79:7001/ledzite/api/sitios?numeroPagina=1&tamanioPagina=10').then(r => {
-        console.log(r)
-        this.data = r.data.contenidoPagina
-      })
-    },
-    consultar (idData) {
-      alert('consulto ' + idData)
-    },
-    editar (idData) {
-      alert('edito ' + idData)
-    },
-    eliminar (idData) {
-      alert('elimino ' + idData)
+      this.buscando = true
     }
   },
   computed: {

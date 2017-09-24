@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import {getPaises} from './../../config'
+import {getPaises} from './../../paths'
 
 const state = {
   paises: {
