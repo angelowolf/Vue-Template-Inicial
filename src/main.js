@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
-import Toast from 'vue-easy-toast'
+import VueToastr from '@deveodk/vue-toastr'
 import VueProgressBar from 'vue-progressbar'
 import Componentes from 'componentes-vue'
 import App from './App'
@@ -18,13 +18,29 @@ import BotonEditar from './components/util/BotonEditar'
 import BotonEliminar from './components/util/BotonEliminar'
 import BotonNuevo from './components/util/BotonNuevo'
 import Tabla from './components/util/Tabla'
+// Directivas
+import {directivaError, directivaPermiso} from './util/directivas'
 // CSS
 import 'flatpickr/dist/themes/material_blue.css'
 import 'componentes-vue/dist/componentes-vue.min.css'
+import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
 
-Vue.use(BootstrapVue)
-Vue.use(Componentes)
-Vue.use(Toast)
+/* CARGA LOS DATOS DEL USUARIO AL CACHE */
+/* if (window.localStorage.getItem('token') && window.localStorage.getItem('token') !== '') {
+  store.dispatch('setToken', window.localStorage.getItem('token'))
+  store.dispatch('setUsuario', window.localStorage.getItem('usuario'))
+  // eslint-disable
+  let isValid = KJUR.jws.JWS.verifyJWT(window.localStorage.getItem('token'), {b64: process.env.CODE_TOKEN}, {alg: ['HS256']})
+  if (isValid) {
+    // eslint-disable
+    let payloadObj  = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(window.localStorage.getItem('token').split(".")[1]));
+    store.dispatch('setGrupos', payloadObj.grupos)
+  } else {
+    router.push('/pages/login')
+  }
+} else {
+  router.push('/pages/login')
+} */
 
 // Componentes
 Vue.component('selectUbicaccion', SelectUbicaccion)
@@ -35,8 +51,13 @@ Vue.component('btn-ed', BotonEditar)
 Vue.component('btn-el', BotonEliminar)
 Vue.component('btn-nv', BotonNuevo)
 Vue.component('tabla', Tabla)
+Vue.use(BootstrapVue)
+Vue.use(Componentes)
+Vue.use(VueToastr, {
+  defaultPosition: 'toast-top-center'
+})
 
-// PROGRESS BAR
+/* PROGRESS BAR */
 const options = {
   color: '#bffaf3',
   failedColor: '#874b4b',
@@ -52,27 +73,31 @@ const options = {
 }
 Vue.use(VueProgressBar, options)
 
+/* HTTP REQUESTS */
 Vue.prototype.$http = axios
 axios.interceptors.request.use(function (config) {
-  // Do something before request is sent
   config.headers['Accept'] = 'application/json'
   config.headers['Content-Type'] = 'application/json'
+  // config.headers['TEST'] = 'TEST'
   return config
 }, function (error) {
-  // Do something with request error
+  return Promise.reject(error)
+})
+axios.interceptors.response.use(function (response) {
+  if (response.status === 200 && response.headers.mensaje) {
+    Vue.prototype.$toastr('success', response.headers.mensaje, 'Exito')
+  } else if (response.status !== 200) {
+    Vue.prototype.$toastr('error', 'Se produjo un error. Contacte con el administrador.', 'Error')
+  }
+  return response
+}, function (error) {
+  Vue.prototype.$toastr('error', 'Se produjo un error. Contacte con el administrador.', 'Error')
   return Promise.reject(error)
 })
 
 /* DIRECTIVAS */
-Vue.directive('error', (el, binding) => {
-  if (binding.value.form !== undefined) {
-    if (binding.value.form.errors.has(binding.value.campo)) {
-      el.className += el.className.indexOf('has-danger') < 0 ? ' has-danger' : ''
-    } else {
-      el.className = el.className.replace('has-danger', '')
-    }
-  }
-})
+Vue.directive('error', directivaError)
+Vue.directive('permiso', directivaPermiso)
 
 /* eslint-disable no-new */
 new Vue({

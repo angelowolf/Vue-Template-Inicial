@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import {poseePermiso} from '../util/permisos.js'
 // Containers
 import Full from '@/containers/Full'
 
@@ -32,7 +32,7 @@ import Register from '@/views/pages/Register'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'hash', // Demo is living in GitHub.io, so required!
   linkActiveClass: 'open active',
   scrollBehavior: () => ({ y: 0 }),
@@ -47,6 +47,7 @@ export default new Router({
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
+          // meta: {funcionalidad: 'usuario', permiso: 'Ver'} // solo si tiene permisos
         },
         {
           path: 'charts',
@@ -176,3 +177,17 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.funcionalidad)) {
+    if (poseePermiso(to.meta.funcionalidad, to.meta.permiso)) {
+      next()
+    } else {
+      next({ name: 'Login', query: { redirect: to.fullPath } })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

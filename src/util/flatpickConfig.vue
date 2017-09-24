@@ -2,7 +2,7 @@
 export default {
   data () {
     return {
-      opciones: {dateFormat: 'd-m-Y'}
+      opcionesDatePicker: {dateFormat: 'd-m-Y'}
     }
   }
 }

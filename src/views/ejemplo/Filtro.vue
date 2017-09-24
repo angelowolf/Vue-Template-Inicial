@@ -54,7 +54,7 @@
               <div class="col-md-3">
                 <label style="margin-bottom: 0px;">FECHA</label>
                 <p class="input-group input-group-sm" style="width: 100%;">
-                  <fecha :options="opciones" style="width: 100%;" placeholder="Fecha..."></fecha>
+                  <fecha :options="opcionesDatePicker" style="width: 100%;" placeholder="Fecha..."></fecha>
                 </p>
               </div>
               <div class="col-6 text-right">

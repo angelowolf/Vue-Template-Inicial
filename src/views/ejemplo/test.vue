@@ -23,14 +23,21 @@
     </div>
     <b-modal title="Modal title" v-model="modalAlta" @ok="modalAlta = false">
     </b-modal>
+    <div>
+      <button @click="toastSuccess('Hola mundo')">toastSuccess</button>
+      <button @click="toastError('Hola mundo')">toastError</button>
+      <button @click="toastWarning('Hola mundo')">toastWarning</button>
+      <button @click="toastInfo('Hola mundo')">toastInfo</button>
+    </div>
   </div>
 </template>
 <script>
 import flatpickConfig from '@/util/flatpickConfig'
+import notificaciones from '@/util/notificaciones'
 
 export default {
   name: 'test-component',
-  mixins: [flatpickConfig],
+  mixins: [flatpickConfig, notificaciones],
   data () {
     return {
       modalAlta: false,

@@ -2,6 +2,8 @@
   <div class="animated fadeIn">
   
     <btn-el :haciendo="buscando" @click="data = []"></btn-el>
+    
+    <btn-el :haciendo="buscando" label="permisos" v-permiso="{funcionalidad:'usuario',permiso:'Ver'}"></btn-el>
 
     <!-- <router-link append :to="'nuevo'" class="btn btn-success btn-sm float-right"><i class="fa fa-plus"></i> Nuevo</router-link> -->
          
