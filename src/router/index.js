@@ -10,6 +10,7 @@ import Charts from '@/views/Charts'
 import Widgets from '@/views/Widgets'
 import Test from '@/views/ejemplo/Test'
 import Listado from '@/views/ejemplo/Listado'
+import Mapa from '@/views/ejemplo/Mapa'
 
 // Views - Components
 import Buttons from '@/views/components/Buttons'
@@ -75,6 +76,11 @@ const router = new Router({
               path: 'listado',
               name: 'Listado',
               component: Listado
+            },
+            {
+              path: 'mapa',
+              name: 'Mapa',
+              component: Mapa
             }
           ]
         },

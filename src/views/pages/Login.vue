@@ -21,7 +21,7 @@
       <div class="card card-container" v-else>
         <form class="form-signin">
           <p class="text-black">Seleccione su servicio:</p>
-          <div v-for="servicio in servicios">
+          <div v-for="servicio in servicios" v-bind:key="servicio.nombre">
             <button class="teal fit normal" @click="login(servicio)">{{servicio.nombre}}</button>
           </div>
         </form>

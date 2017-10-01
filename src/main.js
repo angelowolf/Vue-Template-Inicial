@@ -9,6 +9,7 @@ import App from './App'
 import router from './router'
 import store from './store/'
 import axios from 'axios'
+import * as VueGoogleMaps from 'vue2-google-maps'
 // Componentes
 import SelectUbicaccion from './components/util/selectUbicaccion'
 import BotonBuscar from './components/util/BotonBuscar'
@@ -55,6 +56,13 @@ Vue.use(BootstrapVue)
 Vue.use(Componentes)
 Vue.use(VueToastr, {
   defaultPosition: 'toast-top-center'
+})
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBvaZN9QijRtjwMWf4IyG5fiWDj46rOJDw',
+    libraries: 'places,visualization'
+  }
 })
 
 /* PROGRESS BAR */

@@ -1,5 +1,5 @@
-export const apiDomain = process.env.API_URL
-export const fakeUrl = process.env.FAKE_URL
+export const apiDomain = process.env.API_URL // eslint-disable-line
+export const fakeUrl = process.env.FAKE_URL // eslint-disable-line
 export const getParametros = apiDomain + 'parametrosMunicipio/'
 export const getPaises = apiDomain + 'pais/'
 export const getProvincias = apiDomain + 'provincia/'
