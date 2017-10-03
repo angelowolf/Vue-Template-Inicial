@@ -6,6 +6,7 @@
         <select 
         class="form-control form-control-sm" 
         name="pais" 
+        :disabled="disabledPais"
         v-model="paisSelect"
         @change="cambiaPais()">
           <option value="-1" v-if="esFiltro">Todas</option>
@@ -20,6 +21,7 @@
         <select
         class="form-control form-control-sm" 
         name="provincia" 
+        :disabled="disabledProvincia"
         v-model="provinciaSelect"
         @change="cambiaProvincia()">
           <option value="-1" v-if="esFiltro">Todas</option>
@@ -34,6 +36,7 @@
         <select 
         class="form-control form-control-sm" 
         name="Departamento"
+        :disabled="disabledDepartamento"
         v-model="departamentoSelect"
         @change="cambiaDepartamento()">
           <option value="-1" v-if="esFiltro">Todas</option>
@@ -48,6 +51,7 @@
         <select 
         class="form-control form-control-sm" 
         name="Localidad"
+        :disabled="disabledLocalidad"
         v-model="localidadSelect"
         @change="cambiaLocalidad()">
           <option value="-1" v-if="esFiltro">Todas</option>
@@ -88,6 +92,22 @@
         type: Boolean,
         required: false,
         default: false
+      },
+      disabledPais: {
+        type: Boolean,
+        default: false
+      },
+      disabledProvincia: {
+        type: Boolean,
+        default: false
+      },
+      disabledDepartamento: {
+        type: Boolean,
+        default: false
+      },
+      disabledLocalidad: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -103,7 +123,7 @@
     },
     methods: {
       cambiaPais () {
-        if (this.paisSelect && this.paisSelect !== null && this.paisSelect !== -1) {
+        if (this.paisSelect && this.paisSelect !== null && this.paisSelect != -1) {
           this.$http.get(`${getProvincias}?pais_id=${this.paisSelect}`).then(response => {
             this.provincias = response.data
           })
@@ -114,9 +134,11 @@
         this.provinciaSelect = this.esFiltro ? -1 : null
         this.departamentoSelect = this.esFiltro ? -1 : null
         this.localidadSelect = this.esFiltro ? -1 : null
+        this.departamentos = []
+        this.localidades = []
       },
       cambiaProvincia () {
-        if (this.provinciaSelect !== null && this.provinciaSelect !== -1) {
+        if (this.provinciaSelect !== null && this.provinciaSelect != -1) {
           this.$http.get(`${getDepartamentos}?provincia_id=${this.provinciaSelect}`).then(response => {
             this.departamentos = response.data
           })
@@ -126,9 +148,10 @@
         this.$emit('provinciaSeleccionada', this.provinciaSelect)
         this.departamentoSelect = this.esFiltro ? -1 : null
         this.localidadSelect = this.esFiltro ? -1 : null
+        this.localidades = []
       },
       cambiaDepartamento () {
-        if (this.departamentoSelect !== null && this.departamentoSelect !== -1) {
+        if (this.departamentoSelect !== null && this.departamentoSelect != -1) {
           this.$http.get(`${getLocalidades}?departamento_id=${this.departamentoSelect}`).then(response => {
             this.localidades = response.data
           })

@@ -36,11 +36,12 @@
                 </div>    
               </div>
 
-              <select-ubicaccion :esFiltro="true" classSelect="col-md-3 col-sm-12"
+              <select-ubicaccion :esFiltro="false" classSelect="col-md-3 col-sm-12"
               @paisSeleccionado="paisSeleccionado"
               @provinciaSeleccionada="provinciaSeleccionada"
               @departamentoSeleccionado="departamentoSeleccionado"
-              @localidadSeleccionada="localidadSeleccionada">
+              @localidadSeleccionada="localidadSeleccionada"
+              :idLocalidad="2182">
               </select-ubicaccion>
 
             <div class="row">

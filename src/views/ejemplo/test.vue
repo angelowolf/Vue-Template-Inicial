@@ -11,7 +11,7 @@
         <p class="input-group input-group-sm" style="width: 100%;">
         <fecha :options="opciones3" style="width: 100%;" v-model="opciones2.maxDate"></fecha>
         </p>
-    </div>   
+    </div>
     <div>
     <button @click="buscando = !buscando">CLICKME</button>
       <btn-buscar :haciendo="buscando" @click="buscar"></btn-buscar>

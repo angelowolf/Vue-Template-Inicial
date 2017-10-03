@@ -5,6 +5,7 @@ export const getPaises = apiDomain + 'pais/'
 export const getProvincias = apiDomain + 'provincia/'
 export const getDepartamentos = apiDomain + 'departamento/'
 export const getLocalidades = apiDomain + 'localidad/'
+export const getSitios = apiDomain + 'sitios/'
 
 export const getUsers = fakeUrl + 'users/'
 export const loginUrlPasoUno = apiDomain + 'autorizar/login'

@@ -11,6 +11,7 @@ import Widgets from '@/views/Widgets'
 import Test from '@/views/ejemplo/Test'
 import Listado from '@/views/ejemplo/Listado'
 import Mapa from '@/views/ejemplo/Mapa'
+import MapaUbicacion from '@/views/ejemplo/mapaUbicacion'
 
 // Views - Components
 import Buttons from '@/views/components/Buttons'
@@ -81,6 +82,11 @@ const router = new Router({
               path: 'mapa',
               name: 'Mapa',
               component: Mapa
+            },
+            {
+              path: 'mapaUbicacion',
+              name: 'MapaUbicacion',
+              component: MapaUbicacion
             }
           ]
         },

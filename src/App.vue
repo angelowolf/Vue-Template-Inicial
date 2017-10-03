@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'app',
   mounted () {
@@ -33,6 +35,12 @@ export default {
       //  finish the progress bar
       this.$Progress.finish()
     })
+    this.cargarPaises()
+  },
+  methods: {
+    ...mapActions([
+      'cargarPaises'
+    ])
   }
 }
 </script>

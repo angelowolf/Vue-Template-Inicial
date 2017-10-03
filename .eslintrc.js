@@ -11,6 +11,7 @@ module.exports = {
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: [
+    //'standard',
     'plugin:vue/recommended'
   ],
   rules: {
@@ -20,7 +21,7 @@ module.exports = {
     'generator-star-spacing': 0,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'vue/valid-v-for': 1,
-    'vue/require-v-for-key': 1
+    'vue/valid-v-for': 0,
+    'vue/require-v-for-key': 0
   }
 }

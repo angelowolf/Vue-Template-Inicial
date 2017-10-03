@@ -18,6 +18,7 @@ import Boton from './components/util/Boton'
 import BotonEditar from './components/util/BotonEditar'
 import BotonEliminar from './components/util/BotonEliminar'
 import BotonNuevo from './components/util/BotonNuevo'
+import BotonColapsable from './components/util/BotonColapsable'
 import Tabla from './components/util/Tabla'
 // Directivas
 import {directivaError, directivaPermiso} from './util/directivas'
@@ -51,6 +52,7 @@ Vue.component('btn', Boton)
 Vue.component('btn-ed', BotonEditar)
 Vue.component('btn-el', BotonEliminar)
 Vue.component('btn-nv', BotonNuevo)
+Vue.component('btn-cp', BotonColapsable)
 Vue.component('tabla', Tabla)
 Vue.use(BootstrapVue)
 Vue.use(Componentes)

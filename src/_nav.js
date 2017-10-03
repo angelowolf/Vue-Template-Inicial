@@ -19,6 +19,11 @@ export default {
           name: 'Mapa',
           url: '/ejemplos/mapa',
           icon: 'fa fa-stack-overflow'
+        },
+        {
+          name: 'Mapa Ubicacion',
+          url: '/ejemplos/mapaUbicacion',
+          icon: 'fa fa-stack-overflow'
         }
       ]
     },

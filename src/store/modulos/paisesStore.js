@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import {getPaises} from './../../paths'
+import axios from 'axios'
 
 const state = {
   paises: {
@@ -14,7 +15,7 @@ const mutations = {
 
 const actions = {
   cargarPaises: ({commit}) => {
-    Vue.http.get(getPaises).then(response => {
+    axios.get(getPaises).then(response => {
       commit('SET_PAISES', response.data)
     })
   }
