@@ -11,13 +11,12 @@
       </main>
       <AppAside/>
     </div>
-    <AppFooter/>
   </div>
 </template>
 
 <script>
 import nav from '../_nav'
-import { Header as AppHeader, Sidebar, Aside as AppAside, Footer as AppFooter, Breadcrumb } from '../components/'
+import { Header as AppHeader, Sidebar, Aside as AppAside, Breadcrumb } from '../components/'
 
 export default {
   name: 'full',
@@ -25,7 +24,6 @@ export default {
     AppHeader,
     Sidebar,
     AppAside,
-    AppFooter,
     Breadcrumb
   },
   data () {

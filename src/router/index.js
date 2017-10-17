@@ -48,7 +48,7 @@ const router = new Router({
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
-          // meta: {funcionalidad: 'usuario', permiso: 'Ver'} // solo si tiene permisos
+          //meta: {funcionalidad: 'usuario', permiso: 'Ver'} // solo si tiene permisos
         },
         {
           path: 'charts',

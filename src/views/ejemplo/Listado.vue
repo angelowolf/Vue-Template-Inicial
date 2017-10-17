@@ -54,15 +54,12 @@ export default {
         {name: 'eliminar', label: '', icon: 'fa fa-remove', class: 'btn btn-danger', idData: 'id'}
       ],
       filtros: {
-        nombre: '',
-        contacto: '',
-        nroOrdenanza: '',
-        compania: '',
         idPais: -1,
         idProvincia: -1,
         idDepartamento: -1,
         idLocalidad: -1,
-        gestor: ''
+        fecha: null,
+        codigo: null
       }
     }
   },
